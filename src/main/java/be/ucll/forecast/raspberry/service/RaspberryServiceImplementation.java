@@ -4,12 +4,13 @@ import be.ucll.forecast.raspberry.domain.Humidity;
 import be.ucll.forecast.raspberry.domain.Temperature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import javax.ejb.Stateless;
 
 /**
  * Created by tompl on 12/6/2016.
  */
 
+@Stateless
 public class RaspberryServiceImplementation implements RaspberryService {
 
     @Override

@@ -22,8 +22,10 @@ public class Endpoint {
     @GET
     @Path ("/temperature")
     @Produces(MediaType.APPLICATION_JSON)
+
     public Response getTemperature( ) {
-        return Response.status ( 200 ).entity ( raspberryService.getTemperature () ).build();
+        System.out.println("\n\n\nDO WE GET HERE??????\n\n\n");
+        return Response.status ( 200 ).entity ( "Looks like you are using authentication" ).build();
     }
 
     @GET
