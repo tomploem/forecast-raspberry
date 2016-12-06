@@ -16,7 +16,6 @@ import javax.ws.rs.core.Response;
 @Path("/data")
 public class Endpoint {
 
-
     @EJB
     RaspberryService raspberryService;
 
