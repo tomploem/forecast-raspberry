@@ -1,0 +1,2 @@
+INSERT INTO T_User (id,username, password) values ('1', 'filipvde', 'EyJpikLOR2cgg5Fr/g/m/DljpNDdMdwqDgNBjtDQLZw=' )
+INSERT INTO T_User (id,username, password) values ('2','tomploem', '4CXgs07U4UP0gFKROn2UlqvAgF8c0Kr9Q+RqRgM8K6M=' )

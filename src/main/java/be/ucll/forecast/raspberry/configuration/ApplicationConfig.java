@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
  * Created by tompl on 11/10/2016.
  */
 
-@ApplicationPath("/*")
+@ApplicationPath("api")
 public class ApplicationConfig extends Application {
-
+    
 }

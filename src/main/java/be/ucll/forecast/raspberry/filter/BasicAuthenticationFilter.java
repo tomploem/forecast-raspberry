@@ -1,7 +1,5 @@
 package be.ucll.forecast.raspberry.filter;
 
-import org.glassfish.jersey.internal.util.Base64;
-
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MultivaluedMap;
@@ -15,8 +13,8 @@ import java.util.StringTokenizer;
  * Created by tompl on 12/6/2016.
  */
 
-@Provider
-public class AuthenticationFilter implements ContainerRequestFilter {
+//@Provider
+public class BasicAuthenticationFilter {} /*implements ContainerRequestFilter {
 
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
     private static final String AUTHENTICATION_SCHEME = "Basic";
@@ -78,5 +76,5 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             return isAllowed;
         }
 
-    }
+    }*/
 
