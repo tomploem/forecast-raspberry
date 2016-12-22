@@ -1,6 +1,7 @@
 package be.ucll.forecast.raspberry.controller;
 
 import be.ucll.forecast.raspberry.domain.User;
+import be.ucll.forecast.raspberry.security.JWTTokenNeeded;
 import be.ucll.forecast.raspberry.util.KeyGenerator;
 import be.ucll.forecast.raspberry.util.PasswordUtils;
 import io.jsonwebtoken.Jwts;
@@ -32,7 +33,7 @@ import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
  * Created by tompl on 12/20/2016.
  */
 
-@Path("/users")
+@Path("/auth")
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @Transactional
@@ -50,10 +51,7 @@ public class Auth {
     @POST
     @Path("/login")
     @Consumes(APPLICATION_FORM_URLENCODED)
-    public Response authenticateUser(@FormParam("login") String login,
-                                     @FormParam("password") String password) {
-
-        System.out.println("DOES HE AUTHENTICATE?");
+    public Response authenticateUser(@FormParam("login") String login, @FormParam("password") String password) {
 
         try {
 
@@ -67,7 +65,6 @@ public class Auth {
             return Response.ok().header(AUTHORIZATION, "Bearer " + token).build();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage()+"\n\n\n\n\n");
             return Response.status(UNAUTHORIZED).build();
         }
     }
@@ -94,14 +91,10 @@ public class Auth {
             throw new SecurityException("Invalid user/password");
     }
 
-    @POST
-    public Response create(User user) {
-        em.persist(user);
-        return Response.created(uriInfo.getAbsolutePathBuilder().path(user.getUsername()).build()).build();
-    }
 
     @GET
     @Path("/{id}")
+    @JWTTokenNeeded
     public Response findById(@PathParam("id") String id) {
         User user = em.find(User.class, id);
 
@@ -109,24 +102,6 @@ public class Auth {
             return Response.status(NOT_FOUND).build();
 
         return Response.ok(user).build();
-    }
-
-    @GET
-    public Response findAllUsers() {
-        TypedQuery<User> query = em.createNamedQuery(User.FIND_ALL, User.class);
-        List<User> allUsers = query.getResultList();
-
-        if (allUsers == null)
-            return Response.status(NOT_FOUND).build();
-
-        return Response.ok(allUsers).build();
-    }
-
-    @DELETE
-    @Path("/{id}")
-    public Response remove(@PathParam("id") String id) {
-        em.remove(em.getReference(User.class, id));
-        return Response.noContent().build();
     }
 
     private Date toDate(LocalDateTime localDateTime) {
