@@ -8,13 +8,14 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.util.List;
 import java.util.StringTokenizer;
+import org.glassfish.jersey.internal.util.Base64;
 
 /**
  * Created by tompl on 12/6/2016.
  */
 
-//@Provider
-public class BasicAuthenticationFilter {} /*implements ContainerRequestFilter {
+@Provider
+public class BasicAuthenticationFilter implements ContainerRequestFilter {
 
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
     private static final String AUTHENTICATION_SCHEME = "Basic";
@@ -62,19 +63,17 @@ public class BasicAuthenticationFilter {} /*implements ContainerRequestFilter {
     }
 
         private boolean isUserAllowed(final String username, final String password) {
-            boolean isAllowed = false;
 
-            //Step 1. Fetch password from database and match with password in argument
-            //If both match then get the defined role for user from database and continue; else return isAllowed [false]
-            //Access the database and do this part yourself
+            boolean isAllowed = false;
             //String userRole = userMgr.getUserRole(username);
 
             if(username.equals("tom") && password.equals("ploem"))
             {
                 return true;
             }
+
             return isAllowed;
         }
 
-    }*/
+    }
 
